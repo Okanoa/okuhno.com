@@ -4,49 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script>
-        //based on a pen by @robinselmer
-        var url = "https://api.minetools.eu/ping/server.okuhno.com/25565";
-        
-        $.getJSON(url, function(r) {
-            //data is the JSON string
-        if(r.error){
-            $('#rest').html('Server Offline');
-            return false;
-        } 
-        var pl = '';
-        if(r.players.sample.length > 0 ){ pl = '<br>OP: '+r.players.sample[0].name;  } 
-        $('#rest').html(r.description.replace(/§(.+?)/gi, '')+'<br><b>Players Online:</b> '+r.players.online+pl);
-        $('#favicon').attr('src', r.favicon);
-            
-        });
- 
-    </script>
     <title>Okuhno website!</title>
 </head>
 <body>
     <h1>Welcome!</h1>
-    <p>So you wanna play some modded minecraft?</p>
-    <p>Below you can see if the server is actually running...</p>
+    <p>This is my super cool website where I put things for projects I guess...</p>
 
-    <div class="card">
-         <div class="icon" style="display: flex; flex-direction: row; align-items: center;">
-            <img style="padding-right:10px; height: 64px; width: 64px;" src="https://pbs.twimg.com/profile_images/1490920537308028929/UFTqe6NZ_400x400.jpg" id="favicon">
-            <p>play.okuhno.com v1.18.2<br><span id="rest">Loading ...<br><b>Players Online:</b> 0</span></p>
-        </div>
-    </div>
+    <p>Mario project 8/11/22: <a href="https://github.com/Okanoa/okuhno.com/blob/master/Resources1.zip?raw=true">Download</a></p>
 
-    <p>If it doesn't say <strong>Loading...</strong> that means 👍 it works!<br>Now lets get some mods... </body>p>
-    <p> First you will need Forge! <em>And <a href="https://www.java.com/en/download/">Java</a> if you don't have that...</em></p>
 
-    <p><a href="https://github.com/Okanoa/okuhno.com/blob/master/forge.jar?raw=true">Download Forge</a></p>
-
-    <p>Once installed you will need mods! You can find those here...</p>
-    <p><a href="https://github.com/Okanoa/okuhno.com/blob/master/mods.zip?raw=true">Download Mods</a></p>
-    <p>You will want to go to %appdata% then to .minecraft and make a mods folder and unzip this file into that or put all the .jar files in there.<br> If all else fails google <strong>"How to install forge mods minecraft"</strong></p>
-    <p>Lastly just plug the IP <strong>play.okuhno.com</strong> into the server navigator and enjoy ;)</p>
-
-    <p>Last updated on 7/12/2022</p>
 </body>
 </html>
