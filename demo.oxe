@@ -49,6 +49,102 @@ i32 -> #no_return
 |> #out_type :: proc_y;
 { abstract_expression } |> #out_type :: proc_y;
 
+//////////////////////////// VARIABLES
+
+// Types are intrinsically tied to values and cannot be seperated, only some types are valid during runtime. 
+// An alias cannot be independant of a value/type 
+
+3; // 3 is type #abstract_number
+i64; // uninialized i64
+alias; // ERROR undefined symbol "alias"
+
+// : indicates, mutable alias, value can change. (read write)
+// :: indicates, immutable alias, value cannot change. (read only)
+
+3 | i64; // cast/load 3 into i64. tldr: create an i64 with a value of 3
+
+i64 : alias; // alias is an uninitalized i64.
+i64 :: alias; // alias is an uninitalized i64.
+
+3 : alias; // mutable numeric constant, only allowed under compile time.
+3 :: alias; // immutable numeric constant.
+
+3|i64 : alias; // alias to an i64 with a value of 3.
+3|i64 :: alias; // alias to an i64 with a value of 3.
+
+
+//////////////////////////// VARIABLE OVERWRITE
+
+1 | i32 : alias;
+2 | i32 : other_alias;
+(alias + other_alias) | i32 :: result; 
+
+1 | i64 : alias;
+alias + other_alias :: result; // ERROR, type mismatch.
+
+alias|i32 + other_alias :: result;
+
+
+//////////////////////////// PROCEDURES TYPE DEFINTION
+// NOTE in this language procedures only take in a single type/value.
+
+// procedure type definition minimal
+!! out_type; 
+!! out_type : alias;
+!! out_type :: alias;
+
+// procedure type definition minimal input.
+in_type !! out_type; 
+in_type !! out_type : alias;
+in_type !! out_type :: alias;
+
+
+//////////////////////////// PROCEDURES DEFINTION
+
+// procedure type definition minimal
+{ LOGIC } !! out_type; 
+{ LOGIC } !! out_type : alias;
+{ LOGIC } !! out_type :: alias;
+
+// procedure type definition minimal input.
+in_type { LOGIC } !! out_type; 
+in_type { LOGIC } !! out_type : alias;
+in_type { LOGIC } !! out_type :: alias;
+
+
+//////////////////////////// PROCEDURE CALL
+
+input_data ! procedure_alias;
+input_data ! procedure_alias : alias;
+input_data ! procedure_alias :: alias;
+
+
+//////////////////////////// COMPILE TIME
+// Via replacing ! and !! with $ and $$ you can go to compile time execution.
+// $ enforces compile time always
+// ! will try for compile time if possible
+
+$$ out_type; 
+$$ out_type : alias;
+$$ out_type :: alias;
+
+in_type $$ out_type; 
+in_type $$ out_type : alias;
+in_type $$ out_type :: alias;
+
+{ LOGIC } $$ out_type; 
+{ LOGIC } $$ out_type : alias;
+{ LOGIC } $$ out_type :: alias;
+
+in_type { LOGIC } $$ out_type; 
+in_type { LOGIC } $$ out_type : alias;
+in_type { LOGIC } $$ out_type :: alias;
+
+input_data $ procedure_alias;
+input_data $ procedure_alias : alias;
+input_data $ procedure_alias :: alias;
+
+
 //////////////////////////// SCOPE
 
 {
