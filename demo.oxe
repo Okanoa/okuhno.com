@@ -1,0 +1,51 @@
+// types and values are eqivalent, alias is a special thing that refers to a type.
+
+1 // literal numeric constant
+0xff
+0b00001011 // various ways to represent. "infinite size" is permitted. can only cast to equiv or bigger type
+
+"data of some kind" // literal string
+
+.{} // literal struct;
+.{VT:KEY; VT:KEY;}
+
+.[] // literal array;
+.[VT, VT]
+
+{} // locical literal;
+{
+	// logic
+}
+
+// ALL LITERALS MUST BE "CAST" to be used.
+
+// push values into registers
+// call the function
+
+(3, 4, 10) | my_proc;
+
+{a + b + c | #break;}
+| (int:a, int:b, int:c |> int) :: my_proc;
+
+(i32, i32 $> i32)::[]:mything; // mutable ptr "[]" to proc
+
+"Hello world" $ my_proc;
+
+
+{
+	// free memory or something...
+} | #defer; // passing a block of code to a function...
+
+|{
+	// scoped code execution...
+};
+
+${
+	// enforce compile time code execution...
+}
+
+i32 -> #no_return
+
+|> #out_type :: proc_y;
+{ abstract_expression } |> #out_type :: proc_y;
+
