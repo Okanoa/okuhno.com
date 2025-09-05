@@ -49,3 +49,34 @@ i32 -> #no_return
 |> #out_type :: proc_y;
 { abstract_expression } |> #out_type :: proc_y;
 
+//////////////////////////// SCOPE
+
+{
+  1 | i64:alias;
+  
+  {
+    1 | i64:other_alias;
+    alias + other_alias;
+  };
+  
+  other_alias + 3; // ERROR undefined symbol "other_alias"
+};
+
+//////////////////////////// Example code?
+
+"base:memory" $ #import_lib :: memory_lib;
+
+4 !memory_lib.generic_alloc : bytes_n_stuff;
+!bytes_n_stuff.free $ #defer;
+
+.{ f64:left, f64:right } {
+    left + right | #return;
+} !! f64 :: add_float;
+
+{32.0, 20.0} $add_float :: my_var;
+
+{20.0:right; 420.0:left;} !add_float : other_var;
+ 
+////////////////////////////
+
+
